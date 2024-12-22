@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment'; // Импорт environment
 
 @Component({
   selector: 'app-main',
@@ -12,10 +13,15 @@ export class MainComponent {
   passwordVisible = false;
   errorMessage = '';
 
-  private validEmail = 'admin-bot-1x'; // Установленный email
-  private validPassword = 'tJfB59iWxAXL'; // Установленный пароль
+  // Используем данные из environment
+  private validEmail = environment.auth.email;
+  private validPassword = environment.auth.password;
 
-  constructor(private router: Router) {}
+
+
+  constructor(private router: Router) {
+    console.log(this.validEmail, this.validPassword);
+  }
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
