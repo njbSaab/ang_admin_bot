@@ -1,0 +1,105 @@
+<div
+  class="flex flex-shrink-0 transition-all h-full fixed inset-y-0 z-10 sidebar"
+>
+  <!-- Sidebar button -->
+  <div
+    class="fixed inset-y-0 z-10 w-16 bg-white border-r"
+    (click)="toggleSidebar('linksTab')"
+  >
+    <button
+      class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+      [ngClass]="{
+        'text-white bg-indigo-600':
+          isSidebarOpen && currentSidebarTab === 'linksTab',
+        'text-gray-500 bg-white': !(
+          isSidebarOpen && currentSidebarTab === 'linksTab'
+        )
+      }"
+    >
+      <span class="sr-only">Toggle sidebar</span>
+      <svg
+        aria-hidden="true"
+        class="w-6 h-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h7"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Sidebar -->
+  <div
+    [class.hidden]="!isSidebarOpen"
+    class="fixed inset-y-0 left-0 z-10 flex-shrink-0 w-64 bg-white border-r-2 border-indigo-100 shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-64"
+  >
+    <nav
+      *ngIf="currentSidebarTab === 'linksTab'"
+      aria-label="Main"
+      class="flex flex-col h-full"
+    >
+      <div
+        class="relative flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto pt-[70px]"
+      >
+        <span
+          class="text-3xl font-bold text-indigo-600 absolute top-[20px] left-[50%] translate-x-[-50%]"
+          >Admin</span
+        >
+        <a
+          href="#"
+          class="flex items-center w-full space-x-2 text-white bg-indigo-600 rounded-lg"
+        >
+          <span aria-hidden="true" class="p-2 bg-indigo-700 rounded-lg">
+            <svg
+              class="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+          </span>
+          <span>Home</span>
+        </a>
+        <a
+          href="#"
+          class="flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
+        >
+          <span
+            aria-hidden="true"
+            class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white"
+          >
+            <svg
+              class="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              />
+            </svg>
+          </span>
+          <span>Pages</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
