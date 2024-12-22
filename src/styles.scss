@@ -55,3 +55,14 @@ p {
   margin: 0;
   color: var(--gray-700);
 }
+.ml-side {
+  margin-left: 75px;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+}

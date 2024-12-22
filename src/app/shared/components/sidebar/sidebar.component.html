@@ -3,7 +3,7 @@
 >
   <!-- Sidebar button -->
   <div
-    class="fixed inset-y-0 z-10 w-16 bg-white border-r"
+    class="sidebar-button fixed inset-y-0 z-100 w-16 bg-white border-r-2"
     (click)="toggleSidebar('linksTab')"
   >
     <button
@@ -38,7 +38,7 @@
   <!-- Sidebar -->
   <div
     [class.hidden]="!isSidebarOpen"
-    class="fixed inset-y-0 left-0 z-10 flex-shrink-0 w-64 bg-white border-r-2 border-indigo-100 shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-64"
+    class="fixed inset-y-0 z-10 flex-shrink-0 w-64 bg-white border-r-2 border-indigo-100 shadow-lg left-16 rounded-tr-3xl rounded-br-3xl sm:w-72"
   >
     <nav
       *ngIf="currentSidebarTab === 'linksTab'"

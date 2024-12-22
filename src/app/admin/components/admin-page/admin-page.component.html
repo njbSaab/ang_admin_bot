@@ -1,14 +1,14 @@
 <app-sidebar></app-sidebar>
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi impedit quaerat
-  provident esse inventore, iusto sint nihil quis, dicta tenetur beatae officiis
-  debitis quisquam minima nesciunt alias voluptate et reprehenderit enim
-  distinctio dolorem sed velit nobis accusamus. Autem, sed! Sapiente dolor
-  molestiae doloribus, libero quam, voluptate voluptatibus rem quia dolorum in
-  explicabo, dolore numquam officiis quod omnis saepe blanditiis consequatur
-  iure commodi? Deleniti perferendis eum corporis aliquid maxime fugiat
-  praesentium alias animi deserunt, expedita atque quam dignissimos doloremque
-  pariatur officiis ut perspiciatis in dolorem eligendi ea nostrum magni quas.
-  Expedita sequi sapiente eaque autem dolor quos reprehenderit natus asperiores
-  facilis.
-</p>
+<section class="admin-page ml-side">
+  <h2>Список кнопок</h2>
+  <div *ngFor="let button of buttons" class="button-item">
+    <label>
+      Название кнопки:
+      <input type="text" [value]="button.name" readonly />
+    </label>
+    <label>
+      Контент кнопки:
+      <input type="text" [value]="button.content" readonly />
+    </label>
+  </div>
+</section>
