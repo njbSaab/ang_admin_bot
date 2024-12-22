@@ -19,7 +19,13 @@ export class AdminPageComponent implements OnInit {
   ngOnInit(): void {
     this.loadButtons();
   }
+  closeSuccessMessage(): void {
+    this.successMessage = '';
+  }
 
+  closeErrorMessage(): void {
+    this.errorMessage = '';
+  }
   loadButtons(): void {
     this.menuButtonService.getButtons().subscribe({
       next: (buttons) => {

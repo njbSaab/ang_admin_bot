@@ -40,11 +40,7 @@
     [class.hidden]="!isSidebarOpen"
     class="sidebar-menu fixed inset-y-0 z-10 flex-shrink-0 w-64 bg-white border-r-2 border-indigo-100 shadow-lg left-16 sm:w-72"
   >
-    <nav
-      *ngIf="currentSidebarTab === 'linksTab'"
-      aria-label="Main"
-      class="flex flex-col h-full"
-    >
+    <nav aria-label="Main" class="flex flex-col h-full">
       <div
         class="relative flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto pt-[70px]"
       >
@@ -52,8 +48,9 @@
           class="text-3xl font-bold text-indigo-600 absolute top-[20px] left-[50%] translate-x-[-50%]"
           >Admin</span
         >
-        <a
-          href="#"
+        <div
+          routerLink="/admin"
+          routerLinkActive="bg-indigo-600"
           class="flex items-center w-full space-x-2 text-white bg-indigo-600 rounded-lg"
         >
           <span aria-hidden="true" class="p-2 bg-indigo-700 rounded-lg">
@@ -72,9 +69,11 @@
               />
             </svg>
           </span>
-          <span>Home</span>
-        </a>
-        <a
+          <span>Редактировать</span>
+        </div>
+        <div
+          routerLink="/admin/add-button"
+          routerLinkActive="bg-indigo-600"
           href="#"
           class="flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
         >
@@ -97,8 +96,8 @@
               />
             </svg>
           </span>
-          <span>Pages</span>
-        </a>
+          <span>Добавить кнопку</span>
+        </div>
       </div>
     </nav>
   </div>

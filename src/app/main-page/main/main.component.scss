@@ -3,12 +3,12 @@
     max-width: 600px;
     width: 100%;
     height: auto;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(78, 70, 229, 0.1);
     border-radius: 20px;
     background-color: #fff;
     padding: 50px 30px;
     &:hover {
-      box-shadow: 0 0 15px rgba(147 197 253);
+      box-shadow: 0 0 15px rgba(78, 70, 229, 0.5);
       transition: all 0.3s ease-in-out;
     }
   }

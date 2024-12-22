@@ -66,3 +66,17 @@ p {
   border-style: solid;
   border-color: transparent;
 }
+.close {
+  // position: absolute;
+  // right: 5px;
+  // top: 5px;
+  padding: 2px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    color: red;
+    transition: all 0.3s ease;
+  }
+}
