@@ -1,0 +1,10 @@
+.card-list {
+  .card {
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 15px rgba(78, 70, 229, 1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
