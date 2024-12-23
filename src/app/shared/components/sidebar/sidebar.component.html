@@ -2,10 +2,8 @@
   class="flex flex-shrink-0 transition-all h-full fixed inset-y-0 z-10 sidebar"
 >
   <!-- Sidebar button -->
-  <div
-    class="sidebar-button fixed inset-y-0 z-100 w-16 bg-white border-r-2"
-    (click)="toggleSidebar('linksTab')"
-  >
+  <div class="sidebar-button fixed inset-y-0 z-100 w-16 bg-white border-r-2">
+    <!-- Toggle Sidebar -->
     <button
       class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
       [ngClass]="{
@@ -15,6 +13,7 @@
           isSidebarOpen && currentSidebarTab === 'linksTab'
         )
       }"
+      (click)="toggleSidebar('linksTab')"
     >
       <span class="sr-only">Toggle sidebar</span>
       <svg
@@ -31,6 +30,48 @@
           stroke-width="2"
           d="M4 6h16M4 12h16M4 18h7"
         />
+      </svg>
+    </button>
+
+    <!-- Admin Button -->
+    <button
+      class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+      routerLink="/admin"
+      routerLinkActive="bg-indigo-600 text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="w-6 h-6"
+      >
+        <path
+          fill="currentColor"
+          d="M18 11c.7 0 1.37.1 2 .29V9l-8-6l-8 6v12h7.68A6.995 6.995 0 0 1 18 11"
+        />
+        <path
+          fill="currentColor"
+          d="M18 13c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m3 5.5h-2.5V21h-1v-2.5H15v-1h2.5V15h1v2.5H21z"
+        />
+      </svg>
+    </button>
+
+    <!-- Add Button -->
+    <button
+      class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+      routerLink="/admin/add-button"
+      routerLinkActive="bg-indigo-600 text-white"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="w-6 h-6"
+      >
+        <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
       </svg>
     </button>
   </div>
@@ -50,10 +91,14 @@
         >
         <div
           routerLink="/admin"
-          routerLinkActive="bg-indigo-600"
-          class="flex items-center w-full space-x-2 text-white bg-indigo-600 rounded-lg"
+          routerLinkActive="bg-indigo-600 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center w-full space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
         >
-          <span aria-hidden="true" class="p-2 bg-indigo-700 rounded-lg">
+          <span
+            aria-hidden="true"
+            class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white"
+          >
             <svg
               class="w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -71,10 +116,11 @@
           </span>
           <span>Редактировать</span>
         </div>
+
         <div
           routerLink="/admin/add-button"
-          routerLinkActive="bg-indigo-600"
-          href="#"
+          routerLinkActive="bg-indigo-600 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
           class="flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
         >
           <span
