@@ -1,0 +1,57 @@
+<app-sidebar></app-sidebar>
+
+<section class="admin-page ml-side">
+  <div class="container ml-[75px] mx-auto pt-[20px] pb-[30px]">
+    <h2 class="text-3xl font-bold text-indigo-600 mb-4">Выберите раздел:</h2>
+    <div role="tablist" class="tabs tabs-lifted">
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        class="tab tabs-title-input"
+        aria-label="Приветствие бота"
+      />
+      <div
+        role="tabpanel"
+        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+      >
+        <div class="tabpanel-wrapper">
+          <app-greeting-bot></app-greeting-bot>
+        </div>
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        class="tab tabs-title-input"
+        aria-label="Tab 2"
+        checked="checked"
+      />
+      <div
+        role="tabpanel"
+        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+      >
+        <div class="tabpanel-wrapper">
+          <app-greeting-bot></app-greeting-bot>
+        </div>
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        class="tab tabs-title-input"
+        aria-label="Tab 3"
+      />
+      <div
+        role="tabpanel"
+        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+      >
+        <div class="tabpanel-wrapper">
+          <app-greeting-bot></app-greeting-bot>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

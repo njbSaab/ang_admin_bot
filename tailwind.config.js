@@ -10,6 +10,6 @@ module.exports = {
     require("daisyui"), // Подключение DaisyUI
   ],
   daisyui: {
-    themes: ["acid"], // Указываем тему DaisyUI
+    themes: ["light"], // Указываем тему DaisyUI
   },
 };
