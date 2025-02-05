@@ -3,8 +3,8 @@
     <div
       class="bg-main-trans2-gradient-90 header-tab flex items-center justify-between px-[20px] py-[10px] my-[30px] rounded-[20px] w-[70%] mx-auto"
     >
-      <h2 class="title-tab text-xl font-bold">
-        Приветствие бота <span class="text-indigo-600">/start</span>
+      <h2 class="title-tab text-xl font-bold text-main-trans">
+        Приветствие бота <span>/start</span>
       </h2>
       <p
         class="text-right text-indigo-600 flex gap-2 items-center rounded-[20px] bg-main px-[15px] py-[5px]"
@@ -60,12 +60,13 @@
       >
         <div class="card-title-group flex justify-between items-center">
           <p class="number text-lg">
-            👋 Привествие блок
-            <span class="font-bold text-indigo-600">{{ i + 1 }}</span>
+            👋
+            <span class="font-bold text-indigo-600"
+              >Привествие №{{ i + 1 }}</span
+            >
           </p>
         </div>
-        <div class="card-date">
-          <p class="text-indigo-600">ID: {{ greeting.id }}</p>
+        <div class="card-date flex items-center gap-2">
           <p class="text-xs text-gray-500">
             Дата создания: {{ greeting.created_at | date: "medium" }}
           </p>
@@ -80,6 +81,7 @@
             <img [src]="greeting.image_url" alt="Greeting image" />
           </figure>
           <div class="card-body">
+            <p class="text-indigo-600">ID: {{ greeting.id }}</p>
             <p class="text-indigo-400 text-lg">Описание:</p>
             <p>{{ greeting.greeting_text }}</p>
             <div class="card-actions justify-center pt-[20px]">
@@ -171,7 +173,7 @@
               ></textarea>
               <div class="card-actions justify-center pt-[20px]">
                 <button
-                  class="btn btn-ghost pr-0"
+                  class="btn btn-ghost pr-0 text-success"
                   (click)="saveChanges(greeting)"
                 >
                   Сохранить

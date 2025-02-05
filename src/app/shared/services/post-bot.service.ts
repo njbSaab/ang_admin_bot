@@ -15,4 +15,10 @@ export class PostBotService {
   getPosts(): Observable<MenuPost[]> {
     return this.http.get<MenuPost[]>(`${this.apiUrl}menu/posts`);
   }
+  getPostById(id: number): Observable<MenuPost> {
+    return this.http.get<MenuPost>(`${this.apiUrl}/${id}`);
+  }
+  updatePost(id: number, postData: Partial<MenuPost>): Observable<MenuPost> {
+    return this.http.put<MenuPost>(`${this.apiUrl}/${id}`, postData);
+  }
 }

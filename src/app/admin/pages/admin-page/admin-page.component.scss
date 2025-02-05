@@ -2,6 +2,19 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.title-tab {
+  position: relative;
+  padding-left: 10px;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    background: #4f45e5;
+    left: 0;
+    bottom: 0;
+  }
+}
 .card-list {
   .card {
     cursor: pointer;
