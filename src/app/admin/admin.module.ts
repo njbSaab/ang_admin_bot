@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { AddButtonComponent } from './pages/add-button/add-button.component';
 import { GreetingBotComponent } from './components/tab/greeting-bot/greeting-bot.component';
 import { PopupEditComponent } from './components/ui/popup-edit/popup-edit.component';
+import { PostsBotComponent } from './components/tab/posts-bot/posts-bot.component';
 
 @NgModule({
-  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent],
+  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent],
   imports: [
     CommonModule,
     SharedModule,

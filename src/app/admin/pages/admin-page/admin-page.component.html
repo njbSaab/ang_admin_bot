@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 
 <section class="admin-page ml-side">
-  <div class="container ml-[75px] mx-auto pt-[20px] pb-[30px]">
+  <div class="container ml-[75px] mx-auto pt-[20px]">
     <h2 class="text-3xl font-bold text-indigo-600 mb-4">Выберите раздел:</h2>
     <div role="tablist" class="tabs tabs-lifted">
       <input
@@ -13,7 +13,7 @@
       />
       <div
         role="tabpanel"
-        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+        class="tab-content bg-base-100 border-base-300 rounded-box h-[82dvh]"
       >
         <div class="tabpanel-wrapper">
           <app-greeting-bot></app-greeting-bot>
@@ -25,15 +25,15 @@
         name="my_tabs_2"
         role="tab"
         class="tab tabs-title-input"
-        aria-label="Tab 2"
+        aria-label="Посты бота"
         checked="checked"
       />
       <div
         role="tabpanel"
-        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+        class="tab-content bg-base-100 border-base-300 rounded-box h-[82dvh]"
       >
         <div class="tabpanel-wrapper">
-          <app-greeting-bot></app-greeting-bot>
+          <app-posts-bot></app-posts-bot>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
       />
       <div
         role="tabpanel"
-        class="tab-content bg-base-100 border-base-300 rounded-box p-6 h-[82dvh]"
+        class="tab-content bg-base-100 border-base-300 rounded-box h-[82dvh]"
       >
         <div class="tabpanel-wrapper">
           <app-greeting-bot></app-greeting-bot>

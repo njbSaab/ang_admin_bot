@@ -1,16 +1,16 @@
-<section class="tab-item pt-[20px] w-full">
+<section class="tab-item w-full">
   <div *ngIf="greetings.length > 0; else loading">
     <div
-      class="header-tab flex items-center justify-between p-[10px] rounded-[20px] bg-main-trans-gradient-90"
+      class="bg-main-trans2-gradient-90 header-tab flex items-center justify-between px-[20px] py-[10px] my-[30px] rounded-[20px] w-[70%] mx-auto"
     >
       <h2 class="title-tab text-xl font-bold">
         Приветствие бота <span class="text-indigo-600">/start</span>
       </h2>
-      <p class="text-right white-50 flex gap-2 items-center">
+      <p
+        class="text-right text-indigo-600 flex gap-2 items-center rounded-[20px] bg-main px-[15px] py-[5px]"
+      >
         Всего приветствий:
-        <span class="text-white font-bold text-2xl">{{
-          greetings.length
-        }}</span>
+        <span class="font-bold text-2xl">{{ greetings.length }}</span>
       </p>
     </div>
 
@@ -34,7 +34,7 @@
       </span>
     </div>
 
-    <div *ngIf="errorMessage" class="alert alert-error mb-4 relative">
+    <div *ngIf="errorMessage" class="alert alert-error relative">
       {{ errorMessage }}
       <span class="close" (click)="closeErrorMessage()">
         <svg
@@ -53,7 +53,7 @@
 
     <div
       *ngFor="let greeting of greetings; index as i"
-      class="card-wrapper mb-6 bg-main-trans-gradient-0 rounded-[20px] p-[20px]"
+      class="card-wrapper bg-main-trans-gradient-0 rounded-[20px] p-[20px]"
     >
       <div
         class="card-wrapper-title flex items-start justify-between mb-[20px]"
