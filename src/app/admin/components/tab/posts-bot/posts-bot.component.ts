@@ -15,7 +15,8 @@ export class PostsBotComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
   loading: boolean = true;
-
+  isEditing: boolean = false;
+  isActive: boolean = false;
   constructor(private postService: PostBotService) {}
 
   ngOnInit(): void {
@@ -28,7 +29,9 @@ export class PostsBotComponent implements OnInit {
       next: (data) => {
         this.posts = data.map((post) => ({ ...post, isEditing: false }));
         this.loading = false;
+        console.log("загрузке постов:",this.posts);
       },
+
       error: () => {
         this.errorMessage = 'Ошибка при загрузке постов';
         this.loading = false;
@@ -54,13 +57,49 @@ export class PostsBotComponent implements OnInit {
         next: () => {
           this.successMessage = 'Пост успешно обновлен!';
           post.isEditing = false;
+            setTimeout(() => {
+              this.closeMessages();
+            }, 3000);     
         },
         error: () => {
           this.errorMessage = 'Ошибка при обновлении поста';
         },
       });
   }
+  // Переключение режима редактирования для кнопки
+  toggleButtonEdit(post: EditableMenuPost, buttonWrapper: any): void {
+    this.isEditing = !this.isEditing;
+    this.clearMessages(); // Очистка сообщений при редактировании
+  }
 
+  isClickActive(){
+    this.isActive = !this.isActive
+  }
+
+// Сохранение изменений для кнопки
+saveButtonChanges(post: EditableMenuPost, buttonWrapper: any): void {
+  if (buttonWrapper.button && buttonWrapper.button.name) {
+    // Используем button.name вместо title
+    this.postService.updatePostButton(buttonWrapper.id, {
+      button: {
+        ...buttonWrapper.button,  // Передаем весь объект button
+        name: buttonWrapper.button.name,  // Если нужно обновить название кнопки
+        url: buttonWrapper.button.url,    // Если нужно обновить URL
+      },
+    }).subscribe({
+      next: () => {
+        this.successMessage = 'Кнопка успешно обновлена!';
+        buttonWrapper.isEditing = false;  // Выход из режима редактирования
+        setTimeout(() => {
+          this.closeMessages();
+        }, 3000);   
+      },
+      error: () => {
+        this.errorMessage = 'Ошибка при обновлении кнопки';
+      },
+    });
+  }
+}
   // Обновление изображения при изменении URL
   refreshImage(post: EditableMenuPost): void {
     console.log('URL изображения обновлено:', post.post_image_url);
@@ -72,10 +111,9 @@ export class PostsBotComponent implements OnInit {
     this.successMessage = null;
     this.errorMessage = null;
   }
-
   // Очистка сообщений
   clearMessages(): void {
     this.successMessage = null;
     this.errorMessage = null;
   }
-}
+}   

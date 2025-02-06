@@ -76,10 +76,44 @@ p {
 .ml-side {
   margin-left: 75px;
 }
+.nj-toast-trans {
+  background: #818cf8;
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+}
+.nj-toast {
+  background: #4f45e5;
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+}
+.isLoading {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.nj-border {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 80%;
+    background: linear-gradient(90deg, transparent, #4f45e5, transparent);
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+  }
+}
 
 .close {
-  padding: 2px;
-  border-radius: 20px;
+  padding: 2px 4px;
+  border-radius: 5px;
   transition: all 0.3s ease;
   cursor: pointer;
   &:hover {
@@ -96,7 +130,19 @@ p {
   transition: 0.3s ease;
   font-size: 20px;
 }
-
+.btn-ghost:hover {
+  background-color: #5045e551;
+}
+.btn {
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.081);
+}
+.text-success.btn {
+  background-color: transparent;
+}
+.text-success.btn:hover {
+  background-color: #00aa6f41;
+}
 .bg-blue-gradient {
   background: linear-gradient(90deg, #007bff6b, #007bff);
 }
@@ -116,11 +162,16 @@ p {
   background: linear-gradient(0deg, #4e46e51b, #4e46e508);
 }
 .bg-main-transparent {
+  background-color: #4e46e5a0;
   background: #4e46e5a0;
 }
-
 .bg-main {
+  background-color: #4f45e5;
   background: #4f45e5;
+  color: #ffffff;
+}
+.bg-main-sec {
+  background: #4e45e5;
   color: #ffffff;
 }
 .text-main-trans {
@@ -138,6 +189,9 @@ p {
 }
 .btn-primary {
   background-color: #4f45e5;
+}
+.bg-reg {
+  background-color: #ffffff;
 }
 //* components
 //& alert
@@ -181,4 +235,20 @@ p {
 //& card
 .card {
   overflow: hidden;
+}
+lifted > .tab:is(input:checked),
+.tab:is(input:checked) {
+  color: #4e45e5;
+}
+.tab.tabs-title-input:first-child {
+  margin-left: 10px;
+}
+
+.tab.tabs-title-input {
+  transition: 0.1s ease-in;
+  margin: 0px;
+  padding: 0 5px;
+  &:hover {
+    backdrop-filter: brightness(0.5);
+  }
 }

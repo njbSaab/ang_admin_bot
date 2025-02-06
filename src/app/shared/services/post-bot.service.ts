@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { MenuPost } from '../../interfaces/menu-post.interface';
+import { MenuPostButton } from '../../interfaces/menu-post-button.interface';
 
 @Injectable({
+  
   providedIn: 'root'
 })
 export class PostBotService {
@@ -15,10 +17,12 @@ export class PostBotService {
   getPosts(): Observable<MenuPost[]> {
     return this.http.get<MenuPost[]>(`${this.apiUrl}menu/posts`);
   }
-  getPostById(id: number): Observable<MenuPost> {
-    return this.http.get<MenuPost>(`${this.apiUrl}/${id}`);
+
+  updatePost(id: number, updateData: Partial<MenuPost>): Observable<MenuPost> {
+    return this.http.put<MenuPost>(`${this.apiUrl}greetings/${id}`, updateData);
   }
-  updatePost(id: number, postData: Partial<MenuPost>): Observable<MenuPost> {
-    return this.http.put<MenuPost>(`${this.apiUrl}/${id}`, postData);
+
+  updatePostButton(buttonId: number, buttonData: Partial<MenuPostButton>): Observable<MenuPostButton> {
+    return this.http.put<MenuPostButton>(`${this.apiUrl}post-buttons/${buttonId}`, buttonData);
   }
 }

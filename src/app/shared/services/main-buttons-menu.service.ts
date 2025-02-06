@@ -12,7 +12,12 @@ export class MainButtonsMenuService {
 
   constructor(private http: HttpClient) {}
 
+
   getMenuTables(): Observable<MenuTable[]> {
     return this.http.get<MenuTable[]>(`${this.apiUrl}menu/tables`);
+  }
+
+  updateMenuTable(id: number, data: Partial<MenuTable>): Observable<MenuTable> {
+    return this.http.put<MenuTable>(`${this.apiUrl}menu/tables/${id}`, data);
   }
 }

@@ -57,10 +57,17 @@ export class GreetingBotComponent implements OnInit {
           console.log('Сохранено успешно:', updatedGreeting);
           greeting.isEditing = false; // Выключаем режим редактирования
           this.successMessage = 'Изменения сохранены успешно!'; // Устанавливаем сообщение об успехе
+          setTimeout(() => {
+            this.closeSuccessMessage();
+          }, 3000);   
+
         },
         error: (err) => {
           console.error('Ошибка при сохранении:', err);
           this.errorMessage = 'Ошибка при сохранении изменений'; // Устанавливаем сообщение об ошибке
+          setTimeout(() => {
+            this.closeErrorMessage();
+          }, 3000);  
         },
       });
   }

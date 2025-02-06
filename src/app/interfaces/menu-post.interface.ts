@@ -1,4 +1,5 @@
 import { MenuPostButton } from "./menu-post-button.interface";
+import { MenuButton } from "./menu-button.interface";
 
 export interface MenuPost {
     id: number;
@@ -8,4 +9,5 @@ export interface MenuPost {
     created_at: Date;
     updated_at: Date;
     buttons?: MenuPostButton[];
+    button: MenuButton;
   }

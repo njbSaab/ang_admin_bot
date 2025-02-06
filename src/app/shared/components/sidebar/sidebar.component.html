@@ -13,7 +13,7 @@
           isSidebarOpen && currentSidebarTab === 'linksTab',
         'text-gray-500 bg-white': !(
           isSidebarOpen && currentSidebarTab === 'linksTab'
-        )
+        ),
       }"
       (click)="toggleSidebar('linksTab')"
     >
@@ -100,7 +100,7 @@
   >
     <nav aria-label="Main" class="flex flex-col h-full">
       <div
-        class="relative flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto pt-[83px] flex flex-col gap-[21px]"
+        class="relative flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto pt-[62px] flex flex-col gap-[11px] cursor-pointer"
       >
         <span
           class="text-3xl font-bold text-indigo-600 absolute top-[20px] left-[50%] translate-x-[-50%]"
@@ -111,7 +111,7 @@
           routerLink="/admin"
           routerLinkActive="bg-indigo-600 text-white"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-item flex items-center w-full space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
+          class="nav-item mt-0 flex items-center w-full space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white cursor-pointer"
         >
           <span
             aria-hidden="true"
@@ -139,7 +139,7 @@
           routerLink="/admin/add-button"
           routerLinkActive="bg-indigo-600 text-white"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-item flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
+          class="nav-item mt-0 flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
         >
           <span
             aria-hidden="true"
@@ -160,7 +160,7 @@
               />
             </svg>
           </span>
-          <span>Добавить кнопку</span>
+          <span>Создать</span>
         </div>
       </div>
     </nav>
