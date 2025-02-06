@@ -9,9 +9,12 @@ import { GreetingBotComponent } from './components/tab/greeting-bot/greeting-bot
 import { PopupEditComponent } from './components/ui/popup-edit/popup-edit.component';
 import { PostsBotComponent } from './components/tab/posts-bot/posts-bot.component';
 import { MenuButtonsComponent } from './components/tab/menu-buttons/menu-buttons.component';
+import { InlineButtonsComponent } from './components/ui/inline-buttons/inline-buttons.component';
+import { EditBtnMainComponent } from './components/ui/edit-btn-main/edit-btn-main.component';
+import { EditBtnIconComponent } from './components/ui/edit-btn-icon/edit-btn-icon.component';
 
 @NgModule({
-  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent],
+  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent],
   imports: [
     CommonModule,
     SharedModule,

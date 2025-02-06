@@ -146,6 +146,15 @@ p {
 .bg-blue-gradient {
   background: linear-gradient(90deg, #007bff6b, #007bff);
 }
+.bg-gradient {
+  background: linear-gradient(90deg, #5045e5ac, transparent);
+  border-radius: 20px;
+  h2,
+  h3,
+  h3 span {
+    color: #ffffff;
+  }
+}
 .bg-main-trans-gradient-0 {
   background: linear-gradient(0deg, #4f45e5, transparent);
 }
@@ -192,6 +201,9 @@ p {
 }
 .bg-reg {
   background-color: #ffffff;
+}
+.btn-outline:hover {
+  background-color: #4f45e5;
 }
 //* components
 //& alert

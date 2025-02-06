@@ -1,4 +1,5 @@
 import { MenuPost } from "./menu-post.interface";
+import { MenuButton } from "./menu-button.interface";
 
 export interface MenuTable {
     id: number;
@@ -10,4 +11,5 @@ export interface MenuTable {
     linked_post?: MenuPost;
     created_at: Date;
     updated_at: Date;
+    buttons?: MenuButton[] ; // ✅ Добавляем кнопки к таблице
   }

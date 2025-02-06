@@ -7,7 +7,7 @@ import { MenuPostButton } from '../../interfaces/menu-post-button.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class InlineButtonsMenuService {
+export class InlineButtonsMenuIndexService {
   private apiUrl = `${environment.auth.apiUrl}post-buttons/`;
 
   constructor(private http: HttpClient) {}
