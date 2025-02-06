@@ -1,146 +1,128 @@
-<app-sidebar></app-sidebar>
+import { Component, OnInit } from '@angular/core';
+import { MainButtonsMenuService } from '../../../../shared/services/main-buttons-menu.service';
+import { MenuTable } from '../../../../interfaces/menu-table.interface';
+import { InlineButtonsMenuIndexService } from '../../../../shared/services/inline-buttons-menu-index.service';
+import {MenuButtonService} from '../../../../shared/services/menu-button.service';
+import { MenuButton } from '../../../../interfaces/menu-button.interface';
+// Расширенный тип с полем isEditing
+type EditableMenuTable = MenuTable & { isEditing?: boolean };
 
-<section class="admin-page ml-side">
-  <div class="container w-[80%] mx-auto pt-[30px] pb-[30px]">
-    <h2 class="text-3xl font-bold text-indigo-600 mb-4">Список кнопок</h2>
+@Component({
+  selector: 'app-menu-buttons',
+  templateUrl: './menu-buttons.component.html',
+  styleUrls: ['./menu-buttons.component.scss'],
+})
+export class MenuButtonsComponent implements OnInit {
+  menuTables: EditableMenuTable[] = []; // Используем расширенный тип
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
+  activeIndex: number | null = null;
+  isEditing: boolean = false
+  constructor(
+    private menuService: MainButtonsMenuService,
+    private inlineButtonsService: InlineButtonsMenuIndexService,
+    private menuButtonService: MenuButtonService
+  ) {}
 
-    <!-- Уведомления -->
-    <div
-      *ngIf="successMessage"
-      class="alert alert-success mb-4 relative flex justify-between"
-    >
-      <b> {{ successMessage }} </b>
-      <span class="close" (click)="closeSuccessMessage()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"
-          />
-        </svg>
-      </span>
-    </div>
+  ngOnInit(): void {
+    this.loadMenuTables();
+    // this.loadPostButtons()
+  }
 
-    <div *ngIf="errorMessage" class="alert alert-error mb-4 relative">
-      {{ errorMessage }}
-      <span class="close" (click)="closeErrorMessage()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"
-          />
-        </svg>
-      </span>
-    </div>
+  loadMenuTables(): void {
+    this.menuService.getMenuTables().subscribe({
+      next: (data) => {
+        this.menuTables = data.map((table) => ({ ...table, isEditing: false, buttons: [] }));
+        console.log('✅ Загружено успешно menuTables', this.menuTables);
+  
+        // Загружаем кнопки после получения таблиц
+        this.loadPostButtons();
+      },
+      error: () => {
+        this.errorMessage = 'Ошибка при загрузке данных';
+      },
+    });
+  }
 
-    <!-- Поиск и сортировка -->
-    <div class="flex justify-between mb-4">
-      <input
-        type="text"
-        placeholder="Search button"
-        class="input input-info w-full max-w-xs"
-        [(ngModel)]="searchText"
-        (input)="groupAndSortButtons()"
-      />
-      <select
-        class="select select-info block w-fit"
-        (change)="toggleSortOrder()"
-      >
-        <option value="asc">Parent ID: ⬇️</option>
-        <option value="desc">Parent ID: ⬆️</option>
-      </select>
-    </div>
+  loadPostButtons(): void {
+    this.inlineButtonsService.getPostButtons().subscribe({
+      next: (postButtons) => {
+        console.log('🔹 Загружены связи постов и кнопок:', postButtons);
+        
+        postButtons.forEach(btn => {
+          console.log(`Кнопка с ID: ${btn.button?.id} привязана к посту с ID: ${btn.post?.id}`);
+        });
+  
+        const buttonIds = postButtons.map(btn => btn.button?.id);
+        console.log('📌 ID кнопок:', buttonIds);
+  
+        this.menuButtonService.getButtons().subscribe({
+          next: (allButtons) => {
+            console.log('✅ Загружены полные данные кнопок:', allButtons);
+  
+            this.menuTables.forEach((table) => {
+              if (table.linked_post) {
+                console.log(`Пост с ID ${table.linked_post.id} связан с кнопками:`);
+                table.buttons = postButtons
+                  .filter((btn) => btn.post?.id === table.linked_post?.id)
+                  .map((btn) => {
+                    const foundButton = allButtons.find((b) => b.id === btn.button?.id);
+                    console.log(`Для поста ${btn.post?.id} нашли кнопку:`, foundButton);
+                    return foundButton;
+                  })
+                  .filter((btn): btn is MenuButton => btn !== undefined);
+  
+                console.log('Кнопки для таблицы:', table.buttons);
+              }
+            });
+  
+            console.log('🔄 Обновленные таблицы с кнопками:', this.menuTables);
+          },
+          error: () => {
+            console.error('❌ Ошибка при загрузке данных кнопок');
+          },
+        });
+      },
+      error: () => {
+        console.error('❌ Ошибка при загрузке связей кнопок');
+      },
+    });
+  }
 
-    <!-- Группированные кнопки -->
-    <div *ngFor="let parentId of getGroupedKeys()" class="group">
-      <h3
-        class="text-xl font-semibold text-indigo-500 pt-8 pb-4 flex justify-between items-center"
-      >
-        <span
-          >Group:<span class="text-gray-700">
-            {{ groupedButtons[parentId].group_key || "No Group Key" }}</span
-          ></span
-        >
-        <span
-          >Parent ID: <span class="text-gray-700"> {{ parentId }} </span>
-        </span>
-      </h3>
+  toggleEdit(table: EditableMenuTable): void {
+    table.isEditing = !table.isEditing;
+    this.clearMessages();
+  }
 
-      <div class="card-list flex flex-col gap-4">
-        <div
-          *ngFor="let button of groupedButtons[parentId].buttons"
-          class="card bg-base-100 shadow-xl p-5"
-        >
-          <!-- Поля для редактирования -->
-          <div class="mt-4">
-            <label for="domain name" class="block text-sm text-indigo-400">
-              Название кнопки
-            </label>
-            <div class="flex items-center mt-2">
-              <p
-                class="py-2.5 px-3 text-gray-700 bg-gray-200 border border-r-0 rounded-l-lg input-title"
-              >
-                Текст
-              </p>
-              <input
-                type="text"
-                [(ngModel)]="button.name"
-                (keydown.enter)="saveButton(button)"
-                (blur)="saveButton(button)"
-                placeholder="Название кнопки"
-                class="input block w-full rounded-l-none placeholder-gray-500 border border-gray-300 bg-white px-5 py-2.5 text-gray-800 focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-              />
-            </div>
-          </div>
+  saveChanges(table: EditableMenuTable): void {
+    this.menuService.updateMenuTable(table.id, table).subscribe({
+      next: () => {
+        this.successMessage = 'Изменения успешно сохранены!';
+        table.isEditing = false;
+        setTimeout(() => {
+          this.closeMessages();
+        }, 3000);  
+      },
+      error: () => {
+        this.errorMessage = 'Ошибка при сохранении данных';
+      },
+    });
+  }
 
-          <!-- Контент кнопки -->
-          <div class="mt-4">
-            <label
-              for="Description"
-              class="block text-sm text-indigo-400 font-bold"
-            >
-              Контент кнопки
-            </label>
-            <textarea
-              [(ngModel)]="button.content"
-              (keydown.enter)="saveButton(button)"
-              (blur)="saveButton(button)"
-              placeholder="Содержимое кнопки"
-              class="block mt-2 w-full placeholder-gray-500 rounded-lg border border-gray-300 bg-white px-4 h-32 py-2.5 text-gray-800 focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-            ></textarea>
-            <p class="mt-3 text-xs text-gray-500">
-              Вы можете редактировать содержимое полей и сохранить изменения,
-              нажав “Enter”. Изменения также будут автоматически сохранены при
-              переключении на другое поле.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button
-      class="added-button p-[10px] transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2 fixed bottom-4 right-4"
-      routerLink="/admin/add-button"
-      routerLinkActive="bg-indigo-600 text-white"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        class="w-10 h-10"
-      >
-        <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
-      </svg>
-    </button>
-  </div>
-</section>
+  clearMessages(): void {
+    this.successMessage = null;
+    this.errorMessage = null;
+  }
+  // Закрытие сообщений об успехе и ошибках
+  closeMessages(): void {
+    this.successMessage = null;
+    this.errorMessage = null;
+  }
+  toggleClick(index: number): void {
+    this.activeIndex = this.activeIndex === index ? null : index;
+  }
+  toggleClickBtn(index: number):void{
+    this.activeIndex = this.activeIndex === index ? null : index;
+    this.isEditing = !this.isEditing
+  }
+}
