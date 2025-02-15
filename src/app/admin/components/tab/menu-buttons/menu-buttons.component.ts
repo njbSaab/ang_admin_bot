@@ -31,7 +31,7 @@ export class MenuButtonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMenuTables();
-    this.loadPosts();
+    // this.loadPosts();
   }
 
   loadMenuTables(): void {
@@ -42,7 +42,7 @@ export class MenuButtonsComponent implements OnInit {
           isEditing: false,
           buttons: [] // Инициализируем массив кнопок
         }));
-        // console.log('✅ Загружено menuTables:', this.menuTables);
+        console.log('✅ Загружено menuTables:', this.menuTables);
   
         // Загружаем посты сразу после таблиц
         this.loadPosts();
@@ -92,7 +92,7 @@ export class MenuButtonsComponent implements OnInit {
           }
         });
   
-        // console.log('✅ Связанные кнопки добавлены:', this.menuTables);
+        console.log('✅ Связанные кнопки добавлены:', this.menuTables);
       },
       error: () => {
         this.errorMessage = 'Ошибка при загрузке кнопок постов';
