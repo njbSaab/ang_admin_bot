@@ -12,14 +12,15 @@ import { MenuButtonsComponent } from './components/tab/menu-buttons/menu-buttons
 import { InlineButtonsComponent } from './components/ui/inline-buttons/inline-buttons.component';
 import { EditBtnMainComponent } from './components/ui/edit-btn-main/edit-btn-main.component';
 import { EditBtnIconComponent } from './components/ui/edit-btn-icon/edit-btn-icon.component';
-
+import { MainButtonsMenuComponent } from './components/tab/main-buttons-menu/main-buttons-menu.component';
+import { NewsBotComponent } from './components/tab/news-bot/news-bot.component';
 @NgModule({
-  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent],
+  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent, MainButtonsMenuComponent, NewsBotComponent],
   imports: [
     CommonModule,
     SharedModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     AdminPageComponent

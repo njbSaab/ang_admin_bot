@@ -8,5 +8,7 @@ export interface MenuButton {
     order: number;
     created_at: Date;
     updated_at: Date;
+    postId?: number;
     buttons?: MenuPostButton[];
+    
   }

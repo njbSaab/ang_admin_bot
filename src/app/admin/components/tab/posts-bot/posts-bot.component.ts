@@ -3,7 +3,9 @@ import { MenuPost } from '../../../../interfaces/menu-post.interface';
 import { PostBotService } from '../../../../shared/services/post-bot.service';
 
 // Тип для редактируемых постов
-type EditableMenuPost = MenuPost & { isEditing?: boolean };
+export interface EditableMenuPost extends MenuPost {
+  isEditing?: boolean;
+}
 
 @Component({
   selector: 'app-posts-bot',
@@ -11,6 +13,7 @@ type EditableMenuPost = MenuPost & { isEditing?: boolean };
   styleUrls: ['./posts-bot.component.scss'],
 })
 export class PostsBotComponent implements OnInit {
+  selectedParentMenuId: number | null = null; // По умолчанию показываем все посты
   posts: EditableMenuPost[] = [];
   successMessage: string | null = null;
   errorMessage: string | null = null;
@@ -29,7 +32,7 @@ export class PostsBotComponent implements OnInit {
       next: (data) => {
         this.posts = data.map((post) => ({ ...post, isEditing: false }));
         this.loading = false;
-        console.log("загрузке постов:",this.posts);
+        console.log("загрузке постов в компоненте ПОСТ:",this.posts);
       },
 
       error: () => {
@@ -67,9 +70,10 @@ export class PostsBotComponent implements OnInit {
       });
   }
   // Переключение режима редактирования для кнопки
-  toggleButtonEdit(post: EditableMenuPost, buttonWrapper: any): void {
+  toggleButtonEdit(buttonWrapper: any): void {
+    console.log(buttonWrapper);
     this.isEditing = !this.isEditing;
-    this.clearMessages(); // Очистка сообщений при редактировании
+    this.clearMessages(); // если необходимо
   }
 
   isClickActive(){

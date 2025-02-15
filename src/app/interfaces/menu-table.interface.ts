@@ -12,4 +12,5 @@ export interface MenuTable {
     created_at: Date;
     updated_at: Date;
     buttons?: MenuButton[] ; // ✅ Добавляем кнопки к таблице
+    isEditing? : boolean
   }

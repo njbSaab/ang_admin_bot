@@ -8,6 +8,11 @@ export interface MenuPost {
     post_image_url?: string;
     created_at: Date;
     updated_at: Date;
+    parent_menu: {
+      id: number
+    };
     buttons?: MenuPostButton[];
     button: MenuButton;
+    isEditing?: boolean;  
+
   }

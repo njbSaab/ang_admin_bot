@@ -66,6 +66,7 @@
             >
           </p>
         </div>
+
         <div class="card-date flex items-center gap-2">
           <p class="text-xs text-gray-500">
             Дата создания: {{ greeting.created_at | date: "medium" }}
@@ -74,7 +75,7 @@
       </div>
 
       <!-- Карточка -->
-      <div class="card bg-base-100 mx-auto w-[80%] shadow-xl">
+      <div class="card bg-base-100 mx-auto w-[80%] hover-shadow-white">
         <div *ngIf="!greeting.isEditing; else editMode">
           <!-- Если изображение есть, отображаем -->
           <figure *ngIf="greeting.image_url">

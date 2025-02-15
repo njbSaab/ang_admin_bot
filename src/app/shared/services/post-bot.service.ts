@@ -16,10 +16,11 @@ export class PostBotService {
 
   getPosts(): Observable<MenuPost[]> {
     return this.http.get<MenuPost[]>(`${this.apiUrl}menu/posts`);
+    // return this.http.get<MenuPost[]>(`${this.apiUrl}posts`);
   }
 
   updatePost(id: number, updateData: Partial<MenuPost>): Observable<MenuPost> {
-    return this.http.put<MenuPost>(`${this.apiUrl}greetings/${id}`, updateData);
+    return this.http.put<MenuPost>(`${this.apiUrl}posts/${id}`, updateData);
   }
 
   updatePostButton(buttonId: number, buttonData: Partial<MenuPostButton>): Observable<MenuPostButton> {

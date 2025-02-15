@@ -107,7 +107,7 @@
         name="my_tabs_2"
         role="tab"
         class="tab tabs-title-input"
-        aria-label="Кнопки меню бота"
+        aria-label="Главное меню бота"
       />
       <div
         role="tabpanel"
@@ -115,6 +115,37 @@
       >
         <div class="tabpanel-wrapper">
           <app-menu-buttons></app-menu-buttons>
+        </div>
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        class="tab tabs-title-input"
+        aria-label="Кнопки постов"
+      />
+      <div
+        role="tabpanel"
+        class="tab-content bg-base-100 border-base-300 rounded-box h-[82dvh]"
+      >
+        <div class="tabpanel-wrapper">
+          <app-inline-buttons></app-inline-buttons>
+        </div>
+      </div>
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        class="tab tabs-title-input"
+        aria-label="Новости"
+      />
+      <div
+        role="tabpanel"
+        class="tab-content bg-base-100 border-base-300 rounded-box h-[82dvh]"
+      >
+        <div class="tabpanel-wrapper">
+          <app-news-bot></app-news-bot>
         </div>
       </div>
     </div>

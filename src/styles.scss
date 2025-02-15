@@ -92,6 +92,30 @@ p {
   width: fit-content;
   text-align: center;
 }
+.nj-toast-gradient {
+  background: linear-gradient(90deg, #818cf8, #4f45e5);
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+}
+.nj-toast-grad-access {
+  background: linear-gradient(90deg, #3f9f52cb, #00ff33a4);
+  padding: 5px 10px;
+  color: black;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+}
+.nj-toast-grad-fail {
+  background: linear-gradient(90deg, #ff4400, #ff020269);
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 20px;
+  width: fit-content;
+  text-align: center;
+}
 .isLoading {
   transform: translate(-50%, -50%);
   left: 50%;
@@ -124,21 +148,48 @@ p {
 }
 
 .btn-base {
-  background: linear-gradient(90deg, #007bff6b, #007bff);
+  background: linear-gradient(90deg, #5045e57b, #4f45e5);
   width: 100%;
   color: #ffffff;
   transition: 0.3s ease;
   font-size: 20px;
 }
+.dark\:focus\:border-blue-300:focus,
+.focus\:ring:focus,
+.dark\:text-gray-300 {
+  border-color: #4f45e5;
+}
 .btn-ghost:hover {
   background-color: #5045e551;
+}
+.btn-access.btn:hover {
+  background-color: #00aa6f41;
 }
 .btn {
   border: none;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.081);
 }
+.img-wrapper {
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+.w-main {
+  width: 70%;
+  margin: 0 auto;
+}
+.news-body {
+  width: 70%;
+  margin: 0 auto;
+}
 .text-success.btn {
   background-color: transparent;
+}
+.btn-news .nj-toast-gradient {
+  width: 100%;
+  padding: 20px;
+  overflow: hidden;
 }
 .text-success.btn:hover {
   background-color: #00aa6f41;
@@ -186,7 +237,20 @@ p {
 .text-main-trans {
   color: #7c75ed;
 }
-
+.hover-shadow,
+.hover-shadow-white {
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+.hover-shadow:hover {
+  box-shadow: 0 0 15px rgba(78, 70, 229, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+}
+.hover-shadow-white:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease-in-out;
+}
 .white-50 {
   color: rgba(255, 255, 255, 0.9);
 }
@@ -195,6 +259,12 @@ p {
 }
 .btn-accent {
   background-color: #00aa6f;
+}
+.btn-danger {
+  background-color: #ff576280;
+}
+.btn-danger:hover {
+  background-color: #ff5762;
 }
 .btn-primary {
   background-color: #4f45e5;
