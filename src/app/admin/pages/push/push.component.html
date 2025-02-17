@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 
 <section class="admin-page ml-side">
-  <div class="container mx-auto pt-[10px]">
+  <div class="container mx-auto pt-[30px]">
     <div
       class="bg-main-trans2-gradient-90 header-tab flex items-center justify-between py-[10px] mb-[0px] rounded-[20px] w-[100%] pr-4"
     >
@@ -14,92 +14,309 @@
         height="40"
         viewBox="0 0 24 24"
       >
-        <mask id="lineMdChatFilled0">
-          <g
-            fill="none"
-            stroke="#818cf8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+        <g
+          fill="none"
+          stroke="#4f45e5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path
+            fill="#4f45e5"
+            fill-opacity="0"
+            stroke-dasharray="72"
+            stroke-dashoffset="72"
+            d="M3 19.5v-15.5c0 -0.55 0.45 -1 1 -1h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-14.5Z"
           >
-            <path
-              fill="#818cf8"
-              fill-opacity="0"
-              stroke-dasharray="72"
-              stroke-dashoffset="72"
-              d="M3 19.5v-15.5c0 -0.55 0.45 -1 1 -1h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-14.5Z"
-            >
-              <animate
-                fill="freeze"
-                attributeName="fill-opacity"
-                begin="0.7s"
-                dur="0.5s"
-                values="0;1"
-              />
-              <animate
-                fill="freeze"
-                attributeName="stroke-dashoffset"
-                dur="0.6s"
-                values="72;0"
-              />
-            </path>
-            <path
-              stroke="#0056b3"
-              stroke-dasharray="10"
-              stroke-dashoffset="10"
-              d="M8 7h8"
-            >
-              <animate
-                fill="freeze"
-                attributeName="stroke-dashoffset"
-                begin="1.2s"
-                dur="0.2s"
-                values="10;0"
-              />
-            </path>
-            <path
-              stroke="#0056b3"
-              stroke-dasharray="10"
-              stroke-dashoffset="10"
-              d="M8 10h8"
-            >
-              <animate
-                fill="freeze"
-                attributeName="stroke-dashoffset"
-                begin="1.5s"
-                dur="0.2s"
-                values="10;0"
-              />
-            </path>
-            <path
-              stroke="#0056b3"
-              stroke-dasharray="6"
-              stroke-dashoffset="6"
-              d="M8 13h4"
-            >
-              <animate
-                fill="freeze"
-                attributeName="stroke-dashoffset"
-                begin="1.8s"
-                dur="0.2s"
-                values="6;0"
-              />
-            </path>
-          </g>
-        </mask>
-        <rect
-          width="40"
-          height="40"
-          fill="#0056b3"
-          mask="url(#lineMdChatFilled0)"
-        />
+            <animate
+              fill="freeze"
+              attributeName="fill-opacity"
+              begin="0.7s"
+              dur="0.15s"
+              values="0;0.3"
+            />
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.6s"
+              values="72;0"
+            />
+          </path>
+          <path stroke-dasharray="10" stroke-dashoffset="10" d="M8 7h8">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.85s"
+              dur="0.2s"
+              values="10;0"
+            />
+          </path>
+          <path stroke-dasharray="10" stroke-dashoffset="10" d="M8 10h8">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="1.15s"
+              dur="0.2s"
+              values="10;0"
+            />
+          </path>
+          <path stroke-dasharray="6" stroke-dashoffset="6" d="M8 13h4">
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="1.45s"
+              dur="0.2s"
+              values="6;0"
+            />
+          </path>
+        </g>
       </svg>
-
       <!-- <p
           class="text-right text-indigo-600 flex gap-2 items-center rounded-[20px] bg-main px-[15px] py-[5px]"
         >
           Всего постов:
         </p> -->
     </div>
+
+    <div class="collapse-wrapper flex flex-col gap-2 mt-[30px]">
+      <div class="collapse hover-shadow">
+        <input
+          type="radio"
+          name="my-accordion-3"
+          checked="checked"
+          class="peer"
+        />
+        <div
+          class="collapse-title text-xl font-medium peer-checked:bg-base-200"
+        >
+          <h2 class="text-xl text-indigo-400 font-bold">
+            Отправить push-уведомление
+          </h2>
+        </div>
+        <div class="collapse-content peer-checked:bg-base-200">
+          <label class="block text-sm text-indigo-400 font-bold"
+            >Текс пуша</label
+          >
+          <textarea
+            [(ngModel)]="message"
+            placeholder="Введите сообщение"
+            [disabled]="isSending"
+            class="w-full h-[300px] border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+          ></textarea>
+        </div>
+      </div>
+      <div class="collapse hover-shadow">
+        <input type="radio" name="my-accordion-3" class="peer" />
+        <div
+          class="collapse-title text-xl font-medium peer-checked:bg-base-200"
+        >
+          <label class="block text-xl text-indigo-400 font-bold text-center">
+            ❗️ОБЯЗАТЕЛЬНО❗️ Для отправки пуша выберите группу(ы)
+          </label>
+        </div>
+        <div class="collapse-content peer-checked:bg-base-200">
+          <div class="users-groups flex flex-col gap-4">
+            <div class="users-all-wrapper pb-3">
+              <p class="text-slate-400 font-bold text-xl">Всем юзерам:</p>
+              <div
+                class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
+              >
+                <label class="label cursor-pointer">
+                  <span class="block text-lg pr-1"> All users </span>
+                  <input type="checkbox" class="checkbox checkbox-success" />
+                </label>
+              </div>
+            </div>
+            <div class="users-group pb-3">
+              <p class="text-slate-400 text-lg font-bold">Группы юзеров:</p>
+              <div class="users-group-wrapper flex gap-4">
+                <div
+                  class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
+                >
+                  <label class="label cursor-pointer">
+                    <span class="block text-lg font-bold pr-1"> football </span>
+                    <input type="checkbox" class="checkbox checkbox-success" />
+                  </label>
+                </div>
+                <div
+                  class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
+                >
+                  <label class="label cursor-pointer">
+                    <span class="block text-lg font-bold pr-1"> bask </span>
+                    <input type="checkbox" class="checkbox checkbox-success" />
+                  </label>
+                </div>
+                <div
+                  class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
+                >
+                  <label class="label cursor-pointer">
+                    <span class="block text-lg font-bold pr-1"> ufs </span>
+                    <input type="checkbox" class="checkbox checkbox-success" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="btn-wrapper w-full flex items-center justify-center py-[20px]"
+          >
+            <button
+              class="btn btn-accent w-[50%] text-white text-xl rounded-[35px] min-h-[50px]"
+              (click)="sendPush()"
+              [disabled]="isSending"
+            >
+              {{ isSending ? "Отправка..." : "Отправить" }}
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                >
+                  <mask id="lineMdEmailCheck0">
+                    <g
+                      fill="none"
+                      stroke="#fff"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-dasharray="64"
+                        stroke-dashoffset="64"
+                        d="M4 5h16c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          dur="0.6s"
+                          values="64;0"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="24"
+                        stroke-dashoffset="24"
+                        d="M3 6.5l9 5.5l9 -5.5"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.6s"
+                          dur="0.2s"
+                          values="24;0"
+                        />
+                      </path>
+                      <path
+                        fill="#000"
+                        fill-opacity="0"
+                        stroke="none"
+                        d="M19 13c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z"
+                      >
+                        <set
+                          fill="freeze"
+                          attributeName="fill-opacity"
+                          begin="0.8s"
+                          to="1"
+                        />
+                      </path>
+                      <path
+                        stroke-dasharray="10"
+                        stroke-dashoffset="10"
+                        d="M16 19l1.75 1.75l3.75 -3.75"
+                      >
+                        <animate
+                          fill="freeze"
+                          attributeName="stroke-dashoffset"
+                          begin="0.8s"
+                          dur="0.2s"
+                          values="10;0"
+                        />
+                      </path>
+                    </g>
+                  </mask>
+                  <rect
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    mask="url(#lineMdEmailCheck0)"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="fixed h-full w-full top-0 left-0" *ngIf="resultMessage">
+        <!-- <div class="overlay"></div> -->
+        <div class="overlay-popup">
+          <span class="flex justify-end absolute top-0 w-full"
+            ><svg
+              (click)="cancelMessage()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              class="bg-red-400 transition-all rounded-[25px] cursor-pointer hover:scale-125 active:scale-100"
+            >
+              <g
+                fill="none"
+                stroke="#000"
+                stroke-dasharray="16"
+                stroke-dashoffset="16"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              >
+                <path d="M7 7l10 10">
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    dur="0.4s"
+                    values="16;0"
+                  />
+                </path>
+                <path d="M17 7l-10 10">
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.4s"
+                    dur="0.4s"
+                    values="16;0"
+                  />
+                </path>
+              </g></svg
+          ></span>
+          {{ resultMessage }}
+        </div>
+      </div>
+      <!-- <div class="collapse collapse-plus hover-shadow">
+        <input type="radio" name="my-accordion-3" class="peer" />
+        <div
+          class="collapse-title text-xl font-medium peer-checked:bg-base-200"
+        >
+          Click to open this one and close others
+        </div>
+        <div class="collapse-content peer-checked:bg-base-200">
+          <p>hello</p>
+        </div>
+      </div> -->
+    </div>
   </div>
+
+  <!-- <div class="push-container">
+    <h2>Отправить push-уведомление</h2>
+    <input
+      type="text"
+      [(ngModel)]="message"
+      placeholder="Введите сообщение"
+      [disabled]="isSending"
+    />
+    <button (click)="sendPush()" [disabled]="isSending">
+      {{ isSending ? "Отправка..." : "Отправить" }}
+    </button>
+    <div *ngIf="resultMessage">
+      {{ resultMessage }}
+    </div>
+  </div>
+   -->
 </section>

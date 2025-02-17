@@ -334,3 +334,33 @@ lifted > .tab:is(input:checked),
     backdrop-filter: brightness(0.5);
   }
 }
+.overlay {
+  position: fixed;
+  background: transparent;
+  backdrop-filter: blur(3px);
+  left: 0;
+  height: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  z-index: 88888;
+}
+.overlay-popup {
+  width: 30%;
+  height: fit-content;
+  padding: 60px 40px;
+  border-radius: 35px;
+  background: #4d45e59d;
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  position: fixed;
+  z-index: 99999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
