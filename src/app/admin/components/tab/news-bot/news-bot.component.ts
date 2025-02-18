@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsBotService } from '../../../../shared/services/news-bot.service';
+import { NewsCategory } from '../../../../interfaces/news-category.interface';
+import { NewsCategoryService } from '../../../../shared/services/news-category.service';
 import { NewsBot } from '../../../../interfaces/news-bot.interface';
 
 @Component({
@@ -9,23 +11,38 @@ import { NewsBot } from '../../../../interfaces/news-bot.interface';
 })
 export class NewsBotComponent implements OnInit {
   newsItems: (NewsBot & { isEditing?: boolean })[] = [];
+  categories: NewsCategory[] = [];
   loading: boolean = true;
   successMessage: string | null = null;
   errorMessage: string | null = null;
+  isOpen: boolean = false;
 
-  constructor(private newsBotService: NewsBotService) {}
+  // Переменные для создания новой новости
+  newNews: Partial<NewsBot> = {
+    post_title: '',
+    post_content: '',
+    post_image_url: '',
+    news_url: '',
+    isActive: true,
+  };
+
+  // Переменная для хранения выбранного ID категории
+  newNewsCategoryId: number | null = null;
+
+  constructor(
+    private newsBotService: NewsBotService,
+    private newsCategoryService: NewsCategoryService
+  ) {}
 
   ngOnInit(): void {
     this.loadNews();
+    this.loadCategories();
   }
 
   loadNews(): void {
     this.newsBotService.getNews().subscribe({
       next: (data) => {
-        // Добавляем флаг isEditing для каждого элемента (для режима редактирования)
         this.newsItems = data.map(news => ({ ...news, isEditing: false }));
-        console.log("NEWS",this.newsItems);
-        
         this.loading = false;
       },
       error: (err) => {
@@ -36,13 +53,64 @@ export class NewsBotComponent implements OnInit {
     });
   }
 
-  // Переключение режима редактирования для новости
+  loadCategories(): void {
+    this.newsCategoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error('Ошибка при загрузке категорий:', err);
+        this.errorMessage = 'Ошибка при загрузке категорий';
+      }
+    });
+  }
+
+  createNews(): void {
+    if (!this.newNews.post_title || !this.newNews.post_content || !this.newNewsCategoryId) {
+      this.errorMessage = 'Пожалуйста, заполните обязательные поля (заголовок, контент, категория)';
+      return;
+    }
+    // Формируем поле category как объект с выбранным ID
+    this.newNews.category = { id: this.newNewsCategoryId } as any;
+    
+    this.newsBotService.createNews(this.newNews).subscribe({
+      next: (news) => {
+        this.newsItems.push({ ...news, isEditing: false });
+        this.successMessage = 'Новость успешно создана!';
+        // Очищаем форму
+        this.newNews = { post_title: '', post_content: '', post_image_url: '', news_url: '', isActive: true };
+        this.newNewsCategoryId = null;
+        setTimeout(() => this.closeSuccessMessage(), 3000);
+      },
+      error: (err) => {
+        console.error('Ошибка при создании новости:', err);
+        this.errorMessage = 'Ошибка при создании новости';
+        setTimeout(() => this.closeErrorMessage(), 3000);
+      }
+    });
+  }
+
+  deleteNews(newsId: number): void {
+    this.newsBotService.deleteNews(newsId).subscribe({
+      next: () => {
+        this.newsItems = this.newsItems.filter(news => news.id !== newsId);
+        this.successMessage = 'Новость успешно удалена!';
+        setTimeout(() => this.closeSuccessMessage(), 3000);
+      },
+      error: (err) => {
+        console.error('Ошибка при удалении новости:', err);
+        this.errorMessage = 'Ошибка при удалении новости';
+        setTimeout(() => this.closeErrorMessage(), 3000);
+      }
+    });
+  }
+
+  // Остальные методы, например, toggleEdit, saveChanges и т.д.
   toggleEdit(news: NewsBot & { isEditing?: boolean }): void {
     news.isEditing = !news.isEditing;
     this.clearMessages();
   }
 
-  // Сохранение изменений новости
   saveChanges(news: NewsBot & { isEditing?: boolean }): void {
     const updateData: Partial<NewsBot> = {
       post_title: news.post_title,
@@ -67,7 +135,6 @@ export class NewsBotComponent implements OnInit {
     });
   }
 
-  // Методы для управления сообщениями об успехе/ошибке
   closeSuccessMessage(): void {
     this.successMessage = null;
   }
@@ -79,5 +146,9 @@ export class NewsBotComponent implements OnInit {
   clearMessages(): void {
     this.successMessage = null;
     this.errorMessage = null;
+  }
+
+  openCreateModal(): void {
+    this.isOpen = !this.isOpen;
   }
 }
