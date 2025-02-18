@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class PushService {
   // URL контроллера на сервере.
-  // Если у вас контроллер зарегистрирован без глобального префикса, URL будет таким:
-  private pushUrl = 'http://localhost:3101/push';
-  // Если же установлен глобальный префикс, например, 'api', скорректируйте URL: 
-//   private pushUrl = 'http://localhost:3101/api/push';
+  private defaultUrl = 'http://localhost:3101/push';
+
 
   constructor(private http: HttpClient) {}
 
-  sendPush(message: string): Observable<any> {
-    return this.http.post(this.pushUrl, { message });
+  // Обновленный метод: принимает сообщение и опционально URL
+  sendPush(message: string, url?: string): Observable<any> {
+    const pushUrl = url || this.defaultUrl;
+    return this.http.post(pushUrl, { message });
   }
 }

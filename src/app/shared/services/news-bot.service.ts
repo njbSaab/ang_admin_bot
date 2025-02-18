@@ -8,6 +8,7 @@ import { NewsBot } from '../../interfaces/news-bot.interface';
   providedIn: 'root',
 })
 export class NewsBotService {
+  // Предполагаем, что environment.auth.apiUrl = 'http://localhost:3101/api/'
   private apiUrl = environment.auth.apiUrl; 
   
   constructor(private http: HttpClient) {}
@@ -20,5 +21,15 @@ export class NewsBotService {
   // Обновление новости
   updateNews(id: number, updateData: Partial<NewsBot>): Observable<NewsBot> {
     return this.http.put<NewsBot>(`${this.apiUrl}news/${id}`, updateData);
+  }
+
+  // Создание новости
+  createNews(newsData: Partial<NewsBot>): Observable<NewsBot> {
+    return this.http.post<NewsBot>(`${this.apiUrl}news`, newsData);
+  }
+
+  // Удаление новости
+  deleteNews(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}news/${id}`);
   }
 }

@@ -15,8 +15,10 @@ import { EditBtnIconComponent } from './components/ui/edit-btn-icon/edit-btn-ico
 import { MainButtonsMenuComponent } from './components/tab/main-buttons-menu/main-buttons-menu.component';
 import { NewsBotComponent } from './components/tab/news-bot/news-bot.component';
 import { PushComponent } from './pages/push/push.component';
+import { UsersComponent } from './pages/users/users.component';
+import { NewsCategoryComponent } from './components/tab/news-category/news-category.component';
 @NgModule({
-  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent, MainButtonsMenuComponent, NewsBotComponent, PushComponent],
+  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent, MainButtonsMenuComponent, NewsBotComponent, PushComponent, UsersComponent, NewsCategoryComponent],
   imports: [
     CommonModule,
     SharedModule,

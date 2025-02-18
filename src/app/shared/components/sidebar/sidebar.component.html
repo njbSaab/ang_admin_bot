@@ -55,7 +55,6 @@
         />
       </svg>
     </button>
-
     <!--! Push -->
     <button
       class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
@@ -74,7 +73,24 @@
         />
       </svg>
     </button>
-
+    <!--! Users -->
+    <button
+      class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+      routerLink="/admin/users"
+      routerLinkActive="bg-indigo-600 text-white"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4m0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4"
+        />
+      </svg>
+    </button>
     <!--! Add Button -->
     <button
       class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
@@ -176,6 +192,30 @@
             </svg>
           </span>
           <span>Пуш уведомление</span>
+        </div>
+        <div
+          routerLink="/admin/users"
+          routerLinkActive="bg-indigo-600 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item mt-0 flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
+        >
+          <span
+            aria-hidden="true"
+            class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4m0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4"
+              />
+            </svg>
+          </span>
+          <span>Users</span>
         </div>
         <div
           routerLink="/admin/add-button"

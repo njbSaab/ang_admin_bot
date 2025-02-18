@@ -79,7 +79,7 @@
     </div>
 
     <div class="collapse-wrapper flex flex-col gap-2 mt-[30px]">
-      <div class="collapse hover-shadow">
+      <div class="collapse hover-shadow border">
         <input
           type="radio"
           name="my-accordion-3"
@@ -87,13 +87,13 @@
           class="peer"
         />
         <div
-          class="collapse-title text-xl font-medium peer-checked:bg-base-200"
+          class="collapse-title text-xl font-medium peer-checked:bg-gradient"
         >
           <h2 class="text-xl text-indigo-400 font-bold">
             Отправить push-уведомление
           </h2>
         </div>
-        <div class="collapse-content peer-checked:bg-base-200">
+        <div class="collapse-content peer-checked:bg-white">
           <label class="block text-sm text-indigo-400 font-bold"
             >Текс пуша</label
           >
@@ -101,23 +101,25 @@
             [(ngModel)]="message"
             placeholder="Введите сообщение"
             [disabled]="isSending"
-            class="w-full h-[300px] border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+            class="w-full h-[55dvh] border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
           ></textarea>
         </div>
       </div>
-      <div class="collapse hover-shadow">
+      <div class="collapse hover-shadow border">
         <input type="radio" name="my-accordion-3" class="peer" />
         <div
-          class="collapse-title text-xl font-medium peer-checked:bg-base-200"
+          class="collapse-title text-xl font-medium peer-checked:bg-gradient"
         >
           <label class="block text-xl text-indigo-400 font-bold text-center">
             ❗️ОБЯЗАТЕЛЬНО❗️ Для отправки пуша выберите группу(ы)
           </label>
         </div>
-        <div class="collapse-content peer-checked:bg-base-200">
-          <div class="users-groups flex flex-col gap-4">
+        <div class="collapse-content peer-checked:bg-white">
+          <div class="users-groups flex flex-col pt-[10px]">
             <div class="users-all-wrapper pb-3">
-              <p class="text-slate-400 font-bold text-xl">Всем юзерам:</p>
+              <p class="text-gray-500 opacity-50 font-bold text-xl">
+                Всем юзерам:
+              </p>
               <div
                 class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
               >
@@ -128,30 +130,25 @@
               </div>
             </div>
             <div class="users-group pb-3">
-              <p class="text-slate-400 text-lg font-bold">Группы юзеров:</p>
+              <p class="text-gray-500 opacity-50 text-lg font-bold">
+                Группы юзеров:
+              </p>
               <div class="users-group-wrapper flex gap-4">
                 <div
+                  *ngFor="let category of categories"
                   class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
                 >
                   <label class="label cursor-pointer">
-                    <span class="block text-lg font-bold pr-1"> football </span>
-                    <input type="checkbox" class="checkbox checkbox-success" />
-                  </label>
-                </div>
-                <div
-                  class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
-                >
-                  <label class="label cursor-pointer">
-                    <span class="block text-lg font-bold pr-1"> bask </span>
-                    <input type="checkbox" class="checkbox checkbox-success" />
-                  </label>
-                </div>
-                <div
-                  class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2 rounded-[35px]"
-                >
-                  <label class="label cursor-pointer">
-                    <span class="block text-lg font-bold pr-1"> ufs </span>
-                    <input type="checkbox" class="checkbox checkbox-success" />
+                    <span class="block text-lg font-bold pr-1">{{
+                      category.name
+                    }}</span>
+                    <input
+                      type="checkbox"
+                      class="checkbox checkbox-success"
+                      [value]="category.id"
+                      [checked]="selectedCategoryIds.includes(category.id)"
+                      (change)="onCategoryChange($event)"
+                    />
                   </label>
                 </div>
               </div>
@@ -161,7 +158,7 @@
             class="btn-wrapper w-full flex items-center justify-center py-[20px]"
           >
             <button
-              class="btn btn-accent w-[50%] text-white text-xl rounded-[35px] min-h-[50px]"
+              class="btn btn-accent w-[50%] text-white text-xl rounded-[35px] min-h-[70px]"
               (click)="sendPush()"
               [disabled]="isSending"
             >
