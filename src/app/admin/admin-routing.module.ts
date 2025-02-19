@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'add-button', component: AddButtonComponent },
   { path: 'push', component: PushComponent },
   { path: 'users', component: UsersComponent },
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
