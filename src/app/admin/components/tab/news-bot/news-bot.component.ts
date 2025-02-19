@@ -44,6 +44,8 @@ export class NewsBotComponent implements OnInit {
       next: (data) => {
         this.newsItems = data.map(news => ({ ...news, isEditing: false }));
         this.loading = false;
+        console.log("NEWS",data);
+
       },
       error: (err) => {
         console.error('Ошибка при загрузке новостей:', err);
@@ -57,6 +59,8 @@ export class NewsBotComponent implements OnInit {
     this.newsCategoryService.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
+        console.log('Category',data);
+        
       },
       error: (err) => {
         console.error('Ошибка при загрузке категорий:', err);

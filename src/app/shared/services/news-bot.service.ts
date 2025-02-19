@@ -32,4 +32,5 @@ export class NewsBotService {
   deleteNews(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}news/${id}`);
   }
+
 }

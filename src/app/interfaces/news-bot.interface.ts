@@ -11,6 +11,7 @@ export interface NewsBot {
   post_title: string;
   post_content: string;
   post_image_url?: string;
+  btn_title?: string;
   news_url?: string;
   isActive: boolean;
   category: NewsCategory;

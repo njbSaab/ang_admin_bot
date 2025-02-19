@@ -92,24 +92,34 @@
     </div>
     <div class="mb-4">
       <label class="block text-lg text-indigo-400 font-bold mb-0"
-        >URL изображения (опционально):</label
+        >URL изображения:</label
       >
       <input
         type="text"
         [(ngModel)]="newNews.post_image_url"
         class="input w-full mt-1 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-        placeholder="Введите URL изображения"
+        placeholder="https://image.com"
       />
     </div>
     <div class="mb-4">
       <label class="block text-lg text-indigo-400 font-bold mb-0"
-        >URL новости (опционально):</label
+        >Название кнопки:</label
+      >
+      <input
+        [(ngModel)]="newNews.btn_title"
+        class="input w-full mt-1 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+        placeholder="Кнопа"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block text-lg text-indigo-400 font-bold mb-0"
+        >Ссылка на новость</label
       >
       <input
         type="text"
         [(ngModel)]="newNews.news_url"
         class="input w-full mt-1 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-        placeholder="Введите URL новости"
+        placeholder="https://example.com"
       />
     </div>
     <div class="mb-4">
@@ -202,7 +212,7 @@
               Категория:
               <span
                 class="nj-toast-gradient bg-gradient-to-r from-indigo-500 to-purple-500 iten"
-                >{{ news.category.name }}</span
+                >{{ news?.category?.name }}</span
               >
             </p>
             <p
@@ -296,19 +306,19 @@
             </p>
           </div>
           <h3
-            class="collapse-title text-indigo-400 bg-reg peer-checked:bg-primary peer-checked:text-white font-bold text-lg pl-0 pb-4 min-h-2"
+            class="collapse-title text-indigo-400 bg-reg peer-checked:bg-primary peer-checked:text-white font-bold text-xl pl-0 pb-4 pt-5 min-h-2"
           >
             <!-- <span class="text-xs text-gray-400"> Заголовок:</span>
           <br /> -->
             {{ news.post_title }}
           </h3>
-          <p class="text-sm">
+          <p class="text-sm py-2">
             <!-- <span class="text-xs text-gray-400">Тело новсти:</span>
           <br /> -->
             {{ news.post_content }}
           </p>
-          <div class="text-right flex items-center justify-end my-3">
-            <button class="btn btn-error my-2" (click)="deleteNews(news.id)">
+          <div class="text-right flex items-center gap-1 justify-end my-3">
+            <button class="btn btn-error mb-0" (click)="deleteNews(news.id)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -358,17 +368,27 @@
         <p class="text-lg text-black my-2 font-bold">Кнопка новости:</p>
         <div
           *ngIf="news.news_url"
-          class="flex items-center gap-2 nj-toast-gradient text-white"
+          class="flex items-center justify-between gap-2 nj-toast-gradient text-white"
         >
-          <span class="text-lg text-white font-bold text-nowrap">
-            Ссылка кнопки:</span
-          >
-          <a
-            [href]="news.news_url"
-            target="_blank"
-            class="underline text-sm text-nowrap overflow-x-auto"
-            >{{ news.news_url }}</a
-          >
+          <div class="flex items-center gap-2">
+            <span class="text-lg text-white text-nowrap">
+              Название кнопки:</span
+            >
+            <span class="text-lg text-white font-bold text-nowrap">
+              {{ news.btn_title }}
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg text-white font-bold text-nowrap">
+              Ссылка на новость</span
+            >
+            <a
+              [href]="news.news_url"
+              target="_blank"
+              class="underline text-sm text-nowrap overflow-x-auto"
+              >{{ news.news_url }}</a
+            >
+          </div>
         </div>
       </div>
 
@@ -446,15 +466,25 @@
           </div>
           <div class="">
             <label class="block text-sm text-indigo-400 font-bold">
+              Название кнопки</label
+            >
+            <input
+              [(ngModel)]="news.btn_title"
+              class="input w-full mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+              placeholder="Кнопа"
+            />
+          </div>
+          <div class="">
+            <label class="block text-sm text-indigo-400 font-bold">
               Ссылка на новость</label
             >
             <input
               [(ngModel)]="news.news_url"
               class="input w-full mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40 text-sm"
-              placeholder="URL новости"
+              placeholder="https://example.com"
             />
           </div>
-          <div class="flex justify-end gap-4">
+          <div class="flex justify-end items-center gap-4">
             <button class="btn btn-danger" (click)="toggleEdit(news)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
