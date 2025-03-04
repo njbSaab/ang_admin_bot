@@ -26,4 +26,5 @@ export class PostBotService {
   updatePostButton(buttonId: number, buttonData: Partial<MenuPostButton>): Observable<MenuPostButton> {
     return this.http.put<MenuPostButton>(`${this.apiUrl}post-buttons/${buttonId}`, buttonData);
   }
+  
 }

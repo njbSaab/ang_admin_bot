@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PushService {
   // URL контроллера на сервере.
-  private defaultUrl = 'http://localhost:3101/push';
+  private defaultUrl = 'https://top4winners.top/push'; 
 
 
   constructor(private http: HttpClient) {}

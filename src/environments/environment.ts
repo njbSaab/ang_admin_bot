@@ -3,7 +3,8 @@ export const environment = {
   auth: {
     email: 'admin-bot-1x',
     password: 'tJfB59iWxAXL',
-    apiUrl: 'http://localhost:3101/api/',
+    // apiUrl: 'http://localhost:3101/api/',
+    apiUrl: 'https://top4winners.top/api/',
 
   },
 };

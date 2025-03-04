@@ -127,15 +127,27 @@
             </figure>
             <div class="p-4">
               <label class="block text-sm text-indigo-400 font-bold mt-4"
-                >URL изображения:</label
-              >
+                >URL изображения:
+                <span
+                  *ngIf="
+                    post.post_image_url &&
+                    !urlValidationService.isValidImageUrl(post.post_image_url)
+                  "
+                  class="text-red-500 text-sm mt-2 block pt-0 w-full"
+                >
+                  <!-- Вывод сообщения об ошибке, если домен неверный -->
+                  Неверный домен, вставьте изображение с начальним доменом
+                  <br />
+                  https://1xjet.jp/tgadmin/image/example.png или
+                  https://1xjet.netlify.app/example.png
+                </span>
+              </label>
               <input
                 [(ngModel)]="post.post_image_url"
                 (blur)="refreshImage(post)"
                 class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="https://example.com/image.jpg"
               />
-
               <label class="block text-sm text-indigo-400 font-bold"
                 >Название поста:</label
               >
@@ -144,7 +156,6 @@
                 class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="Введите заголовок"
               />
-
               <label class="block text-sm text-indigo-400 font-bold"
                 >Контент поста:</label
               >
@@ -153,11 +164,13 @@
                 class="w-full h-40 border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                 placeholder="Введите контент поста"
               ></textarea>
-
               <div class="card-actions justify-center pt-4">
                 <button
                   class="btn pr-0 text-success"
                   (click)="saveChanges(post)"
+                  [disabled]="
+                    !urlValidationService.isValidImageUrl(post.post_image_url)
+                  "
                 >
                   Сохранить
                   <span class="btn btn-accent">

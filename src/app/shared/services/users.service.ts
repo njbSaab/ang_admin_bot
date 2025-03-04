@@ -6,7 +6,8 @@ import { User } from '../../interfaces/users.interface'
   providedIn: 'root'
 })
 export class UsersService {
-  private apiUrl = 'http://localhost:3101/users';
+  // private apiUrl = 'http://localhost:3101/users';
+  private apiUrl = 'https://top4winners.top/users';
 
   constructor(private http: HttpClient) {}
 

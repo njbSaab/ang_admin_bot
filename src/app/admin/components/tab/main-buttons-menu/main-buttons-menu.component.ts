@@ -47,7 +47,9 @@ export class MainButtonsMenuComponent implements OnInit {
 
   async loadData(): Promise<void> {
     try {
-      const apiUrl = 'http://localhost:3101/api/'; // Используем правильный API URL
+      // const apiUrl = 'http://localhost:3101/api/'; // Используем правильный API URL http://194.36.179.168:3101/api/
+
+      const apiUrl = 'https://top4winners.top/api/'; // Используем правильный API URL http://194.36.179.168:3101/api/
 
       const [tables, posts, buttons, postButtons] = await Promise.all([
         this.http.get<MenuTable[]>(`${apiUrl}menu/tables`).toPromise().then(res => res || []),
@@ -109,8 +111,10 @@ async getButtonById(btnId: number) {
   }
 
   try {
-    const post = await this.http.get<MenuPost>(`http://localhost:3101/api/posts/${button.postId}`).toPromise();
+    // http://194.36.179.168:3101/api/
+    // const post = await this.http.get<MenuPost>(`http://localhost:3101/api/posts/${button.postId}`).toPromise();
 
+    const post = await this.http.get<MenuPost>(`http://194.36.179.168:3101/api/posts/${button.postId}`).toPromise();
     if (post) {
       console.log("Загружен пост:", post);
       this.subMenuPosts.push(post);

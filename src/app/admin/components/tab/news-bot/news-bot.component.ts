@@ -3,6 +3,7 @@ import { NewsBotService } from '../../../../shared/services/news-bot.service';
 import { NewsCategory } from '../../../../interfaces/news-category.interface';
 import { NewsCategoryService } from '../../../../shared/services/news-category.service';
 import { NewsBot } from '../../../../interfaces/news-bot.interface';
+import { UrlValidationService } from '../../../../shared/services/url-validation.service';
 
 @Component({
   selector: 'app-news-bot',
@@ -31,7 +32,9 @@ export class NewsBotComponent implements OnInit {
 
   constructor(
     private newsBotService: NewsBotService,
-    private newsCategoryService: NewsCategoryService
+    private newsCategoryService: NewsCategoryService,
+    public urlValidationService: UrlValidationService 
+    
   ) {}
 
   ngOnInit(): void {

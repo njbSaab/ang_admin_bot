@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuPost } from '../../../../interfaces/menu-post.interface';
 import { PostBotService } from '../../../../shared/services/post-bot.service';
+import { MenuButtonService } from '../../../../shared/services/menu-button.service';
+import { UrlValidationService } from '../../../../shared/services/url-validation.service';
 
 // Тип для редактируемых постов
 export interface EditableMenuPost extends MenuPost {
@@ -20,7 +22,12 @@ export class PostsBotComponent implements OnInit {
   loading: boolean = true;
   isEditing: boolean = false;
   isActive: boolean = false;
-  constructor(private postService: PostBotService) {}
+  constructor(
+    private postService: PostBotService,
+    private menuButtonService: MenuButtonService,
+    public urlValidationService: UrlValidationService 
+  )
+     {}
 
   ngOnInit(): void {
     this.loadPosts();
@@ -83,20 +90,17 @@ export class PostsBotComponent implements OnInit {
 // Сохранение изменений для кнопки
 saveButtonChanges(post: EditableMenuPost, buttonWrapper: any): void {
   if (buttonWrapper.button && buttonWrapper.button.name) {
-    // Используем button.name вместо title
-    this.postService.updatePostButton(buttonWrapper.id, {
-      button: {
-        ...buttonWrapper.button,  // Передаем весь объект button
-        name: buttonWrapper.button.name,  // Если нужно обновить название кнопки
-        url: buttonWrapper.button.url,    // Если нужно обновить URL
-      },
+    this.menuButtonService.updateButton(buttonWrapper.button.id, {
+      name: buttonWrapper.button.name,
+      url: buttonWrapper.button.url,
+      order: buttonWrapper.button.order,
     }).subscribe({
       next: () => {
         this.successMessage = 'Кнопка успешно обновлена!';
-        buttonWrapper.isEditing = false;  // Выход из режима редактирования
+        buttonWrapper.isEditing = false;
         setTimeout(() => {
           this.closeMessages();
-        }, 3000);   
+        }, 3000);
       },
       error: () => {
         this.errorMessage = 'Ошибка при обновлении кнопки';
@@ -104,6 +108,7 @@ saveButtonChanges(post: EditableMenuPost, buttonWrapper: any): void {
     });
   }
 }
+
   // Обновление изображения при изменении URL
   refreshImage(post: EditableMenuPost): void {
     console.log('URL изображения обновлено:', post.post_image_url);

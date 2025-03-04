@@ -93,4 +93,12 @@ export class GreetingBotComponent implements OnInit {
     this.successMessage = null;
     this.errorMessage = null;
   }
+
+  isValidImageUrl(url: string | undefined): boolean {
+    // Если строка пустая или не задана — считаем, что проверка пройдена
+    if (!url || url.trim() === '') {
+      return true;
+    }
+    return url.startsWith('https://1xjet.jp/tgadmin/image') || url.startsWith('https://1xjet.netlify.app/');
+  }
 }

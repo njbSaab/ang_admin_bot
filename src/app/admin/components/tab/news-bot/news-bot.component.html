@@ -92,8 +92,21 @@
     </div>
     <div class="mb-4">
       <label class="block text-lg text-indigo-400 font-bold mb-0"
-        >URL изображения:</label
-      >
+        >URL изображения:
+        <span
+          *ngIf="
+            newNews.post_image_url &&
+            !urlValidationService.isValidImageUrl(newNews.post_image_url)
+          "
+          class="text-red-500 text-sm mt-2 block pt-2"
+        >
+          <!-- Вывод сообщения об ошибке, если домен неверный -->
+          Неверный домен, вставьте изображение с начальним доменом
+          <br />
+          https://1xjet.jp/tgadmin/image/example.png или
+          https://1xjet.netlify.app/example.png
+        </span>
+      </label>
       <input
         type="text"
         [(ngModel)]="newNews.post_image_url"
@@ -140,6 +153,7 @@
     </div>
     <button
       (click)="createNews()"
+      [disabled]="!urlValidationService.isValidImageUrl(newNews.post_image_url)"
       class="btn pr-0 text-success mx-auto flex items-center my-3"
     >
       Сохранить
@@ -394,7 +408,9 @@
 
       <!-- Режим редактирования -->
       <ng-template #editMode>
-        <div class="card-body hover-shadow rounded-xl px-[40px] mx-[20px]">
+        <div
+          class="card-body w-[70%] mx-auto hover-shadow rounded-xl px-[40px]"
+        >
           <div
             class="flex flex-col items-start btn btn-ghost btn-access w-fit mb-2"
           >
@@ -430,8 +446,8 @@
           </div>
           <div class="">
             <label class="block text-sm text-indigo-400 font-bold">
-              Ссылка на изображение:</label
-            >
+              Ссылка на изображение:
+            </label>
             <input
               [(ngModel)]="news.post_image_url"
               class="input w-full mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40 text-sm"
@@ -441,6 +457,19 @@
               class="img-wrapper w-[350px] h-auto relative"
               *ngIf="news.post_image_url"
             >
+              <span
+                *ngIf="
+                  !newNews.post_image_url &&
+                  !urlValidationService.isValidImageUrl(newNews.post_image_url)
+                "
+                class="text-red-500 text-sm mt-2 block w-full"
+              >
+                <!-- Вывод сообщения об ошибке, если домен неверный -->
+                Неверный домен, вставьте изображение с начальним доменом
+                <br />
+                https://1xjet.jp/tgadmin/image/example.png или
+                https://1xjet.netlify.app/example.png
+              </span>
               <figure *ngIf="news.post_image_url">
                 <img
                   [src]="news.post_image_url"
@@ -511,7 +540,13 @@
                 </path>
               </svg>
             </button>
-            <button class="btn pr-0 text-success" (click)="saveChanges(news)">
+            <button
+              class="btn pr-0 text-success"
+              [disabled]="
+                !urlValidationService.isValidImageUrl(newNews.post_image_url)
+              "
+              (click)="saveChanges(news)"
+            >
               Сохранить
               <span class="btn btn-accent">
                 <svg

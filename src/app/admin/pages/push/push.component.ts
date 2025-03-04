@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsCategoryService, NewsCategory } from '../../../shared/services/news-category.service';
 import { PushService } from '../../../shared/services/push.service';
+import { UrlValidationService } from '../../../shared/services/url-validation.service';
 
 @Component({
   selector: 'app-push',
@@ -11,13 +12,17 @@ export class PushComponent implements OnInit {
   message: string = '';
   isSending: boolean = false;
   resultMessage: string = '';
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
   categories: NewsCategory[] = [];
   selectedCategoryIds: number[] = [];
 
   constructor(
     private pushService: PushService,
-    private newsCategoryService: NewsCategoryService
+    private newsCategoryService: NewsCategoryService,
+    public urlValidationService: UrlValidationService 
+    
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +51,10 @@ export class PushComponent implements OnInit {
     }
     console.log('Выбранные категории:', this.selectedCategoryIds);
   }
+  // Обновление изображения при изменении URL
+  refreshImage(): void {
+    this.clearMessages();
+  }
 
   sendPush(): void {
     if (!this.message.trim()) {
@@ -56,7 +65,7 @@ export class PushComponent implements OnInit {
     this.resultMessage = '';
 
     // Пример: если выбрана хотя бы одна категория, отправляем пуш для первой выбранной
-    let url = 'http://localhost:3101/push';
+    let url = 'https://top4winners.top/push';
     if (this.selectedCategoryIds.length > 0) {
       url += `?categoryId=${this.selectedCategoryIds[0]}`;
     }
@@ -78,5 +87,14 @@ export class PushComponent implements OnInit {
 
   cancelMessage(): void {
     this.resultMessage = '';
+  }
+  closeMessages(): void {
+    this.successMessage = null;
+    this.errorMessage = null;
+  }
+  // Очистка сообщений
+  clearMessages(): void {
+    this.successMessage = null;
+    this.errorMessage = null;
   }
 }

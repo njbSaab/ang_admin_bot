@@ -167,7 +167,19 @@
             <div class="mt-4 px-[32px]">
               <label for="domain name" class="block text-sm text-indigo-400">
                 Вставьте ссылку изображение пример: <b>https://image.com</b>
+                <span
+                  *ngIf="
+                    greeting.image_url && !isValidImageUrl(greeting.image_url)
+                  "
+                  class="text-red-500 text-sm mt-2 block pt-2"
+                >
+                  <!-- Вывод сообщения об ошибке, если домен неверный -->
+                  Неверный домен, вставьте изображение с начальним доменом
+                  https://1xjet.jp/tgadmin/image/example.png или
+                  https://1xjet.netlify.app/example.png
+                </span>
               </label>
+
               <div class="flex items-center mt-2">
                 <p
                   class="py-2.5 px-3 text-gray-700 bg-gray-200 border border-r-0 rounded-l-lg input-title"
@@ -198,8 +210,9 @@
                 <button
                   class="btn btn-ghost pr-0 text-success"
                   (click)="saveChanges(greeting)"
+                  [disabled]="!isValidImageUrl(greeting.image_url || '')"
                 >
-                  Сохранить
+                  > Сохранить
                   <span class="btn btn-accent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
