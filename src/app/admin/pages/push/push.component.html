@@ -95,11 +95,11 @@
         </div>
         <div class="collapse-content peer-checked:bg-white">
           <div class="form-group">
-            <label class="block text-sm text-indigo-400 font-bold"
+            <label class="block text-sm text-indigo-400 font-bold mb-1"
               >URL изображения(необязательно):
               <span
                 *ngIf="
-                  message && !urlValidationService.isValidImageUrl(message)
+                  imageUrl && !urlValidationService.isValidImageUrl(imageUrl)
                 "
                 class="text-red-500 text-sm mt-2 block pt-0 w-full"
               >
@@ -111,35 +111,36 @@
               </span>
             </label>
             <input
-              [(ngModel)]="message"
+              [(ngModel)]="imageUrl"
               (blur)="refreshImage()"
               class="input w-full mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
               placeholder="https://example.com/image.jpg"
             />
           </div>
           <div class="form-group">
-            <label class="block text-sm text-indigo-400 font-bold"
+            <label class="block text-sm text-indigo-400 font-bold mb-1"
               >Текс пуша(обязательно):</label
             >
             <textarea
-              [(ngModel)]="message"
+              [(ngModel)]="pushText"
               placeholder="Введите сообщение"
               [disabled]="isSending"
               class="w-full h-[24dvh] border rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
             ></textarea>
           </div>
-          <h3 class="text-sm font-bold text-indigo-400 mb-1 mt-2">
+          <h3 class="text-sm font-bold text-indigo-400 mb-1 mt-4">
             Кнопка пуша(необязательно):
           </h3>
           <div
-            class="form-group-wrapper flex flex-1 items-center gap-4 pt-4 justify-between px-[40px] py-[20px] mb-0 rounded-[20px] mx-auto bg-gradient-to-r from-indigo-400 to-purple-300"
+            class="form-group-wrapper flex flex-1 items-center gap-4 pt-4 justify-between px-[40px!important] py-[20px] mb-0 rounded-[20px] mx-auto nj-toast-gradient w-[100%!important]"
           >
             <div class="form-group w-[45%]">
               <label class="block text-sm text-white font-bold"
                 >Название кнопки:</label
               >
               <input
-                class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                [(ngModel)]="buttonName"
+                class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg h-[40px] py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40 text-black"
                 placeholder="Редактировать заголовок"
               />
             </div>
@@ -148,7 +149,8 @@
                 >Ссылка на ресурс:
               </label>
               <input
-                class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg px-4 py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                [(ngModel)]="buttonUrl"
+                class="input w-full mt-2 mb-4 border border-gray-300 rounded-lg py-2.5 focus:ring focus:ring-blue-300 focus:ring-opacity-40 h-[40px] text-black"
                 placeholder="Редактировать URL кнопки"
               />
             </div>

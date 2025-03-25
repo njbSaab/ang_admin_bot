@@ -1,0 +1,26 @@
+<app-sidebar></app-sidebar>
+
+<section class="admin-page ml-side">
+  <div class="container mx-auto pt-[10px]">
+    <div
+      class="bg-main-trans2-gradient-90 header-tab flex items-center justify-between py-[10px] mb-[0px] rounded-[20px] w-[100%] pr-4"
+    >
+      <h2 class="title-tab text-2xl font-bold text-indigo-600">Add Images</h2>
+    </div>
+
+    <div class="carousel carousel-vertical rounded-box h-[90vh] w-full">
+      <div class="carousel-item h-full w-full">
+        <app-image-upload
+          (imageUploaded)="onImageUploaded($event)"
+          class="w-full"
+        ></app-image-upload>
+      </div>
+      <div class="carousel-item h-full w-full overflow-y-scroll">
+        <app-images-table
+          [images]="uploadedImages"
+          class="w-full"
+        ></app-images-table>
+      </div>
+    </div>
+  </div>
+</section>

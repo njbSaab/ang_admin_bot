@@ -17,8 +17,11 @@ import { NewsBotComponent } from './components/tab/news-bot/news-bot.component';
 import { PushComponent } from './pages/push/push.component';
 import { UsersComponent } from './pages/users/users.component';
 import { NewsCategoryComponent } from './components/tab/news-category/news-category.component';
+import { ImagesComponent } from './pages/images/images.component';
+import { ImageUploadComponent } from './pages/images/image-upload/image-upload.component';
+import { ImagesTableComponent } from './pages/images/images-table/images-table.component';
 @NgModule({
-  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent, MainButtonsMenuComponent, NewsBotComponent, PushComponent, UsersComponent, NewsCategoryComponent],
+  declarations: [AdminPageComponent, AddButtonComponent, GreetingBotComponent, PopupEditComponent, PostsBotComponent, MenuButtonsComponent, InlineButtonsComponent, EditBtnMainComponent, EditBtnIconComponent, MainButtonsMenuComponent, NewsBotComponent, PushComponent, UsersComponent, NewsCategoryComponent, ImagesComponent, ImageUploadComponent, ImagesTableComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -9,7 +9,11 @@ import { UrlValidationService } from '../../../shared/services/url-validation.se
   styleUrls: ['./push.component.scss']
 })
 export class PushComponent implements OnInit {
-  message: string = '';
+  imageUrl: string = '';
+  pushText: string = '';  // Текст пуша (необязательный)
+  buttonName: string = ''; 
+  buttonUrl: string = ''; 
+
   isSending: boolean = false;
   resultMessage: string = '';
   successMessage: string | null = null;
@@ -57,24 +61,40 @@ export class PushComponent implements OnInit {
   }
 
   sendPush(): void {
-    if (!this.message.trim()) {
-      this.resultMessage = 'Введите сообщение!';
-      return;
-    }
+    // Формируем объект для отправки. Пустые поля можно не отправлять, 
+    // но обычно проще отправить всё, а на бэкенде решать, что с ними делать.
+    const payload = {
+      imageUrl: this.imageUrl?.trim() || '',
+      text: this.pushText?.trim() || '',  // Можно оставить пустым
+      buttonName: this.buttonName?.trim() || '',
+      buttonUrl: this.buttonUrl?.trim() || '',
+      categoryIds: this.selectedCategoryIds
+    };
     this.isSending = true;
     this.resultMessage = '';
 
+    // Можно проверить, чтобы вообще что-то было заполнено (необязательно):
+    if (!payload.imageUrl && !payload.text && !payload.buttonName && !payload.buttonUrl) {
+      this.resultMessage = 'Нужно ввести хотя бы текст, картинку или кнопку';
+      this.isSending = false;
+      return;
+    }
+     
     // Пример: если выбрана хотя бы одна категория, отправляем пуш для первой выбранной
     let url = 'https://top4winners.top/push';
     if (this.selectedCategoryIds.length > 0) {
       url += `?categoryId=${this.selectedCategoryIds[0]}`;
     }
     
-    this.pushService.sendPush(this.message, url).subscribe({
+    this.pushService.sendPush(payload).subscribe({
       next: (res) => {
         this.resultMessage = 'Push уведомление успешно отправлено!';
         this.isSending = false;
-        this.message = '';
+        // Очищаем поля
+        this.imageUrl = '';
+        this.pushText = '';
+        this.buttonName = '';
+        this.buttonUrl = '';
         console.log(res);
       },
       error: (err) => {

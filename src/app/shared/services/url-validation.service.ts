@@ -9,6 +9,6 @@ export class UrlValidationService {
     if (!url || url.trim() === '') {
       return true;
     }
-    return url.startsWith('https://1xjet.jp/tgadmin/image') || url.startsWith('https://1xjet.netlify.app/');
+    return url.startsWith('https://top4winners.top/') || url.startsWith('https://1xjet.netlify.app/');
   }
 }

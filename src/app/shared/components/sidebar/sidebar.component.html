@@ -91,6 +91,74 @@
         />
       </svg>
     </button>
+    <!--! Images -->
+    <button
+      class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+      routerLink="/admin/images"
+      routerLinkActive="bg-indigo-600 text-white"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path
+            stroke-dasharray="72"
+            stroke-dashoffset="72"
+            d="M3 14v-9h18v14h-18v-5"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              dur="0.6s"
+              values="72;0"
+            />
+          </path>
+          <path
+            stroke-dasharray="24"
+            stroke-dashoffset="24"
+            stroke-width="1"
+            d="M3 16l4 -3l3 2l6 -5l5 4"
+          >
+            <animate
+              fill="freeze"
+              attributeName="stroke-dashoffset"
+              begin="0.6s"
+              dur="0.4s"
+              values="24;0"
+            />
+          </path>
+        </g>
+        <g fill="currentColor" fill-opacity="0">
+          <circle cx="7.5" cy="9.5" r="1.5">
+            <animate
+              fill="freeze"
+              attributeName="fill-opacity"
+              begin="1s"
+              dur="0.2s"
+              values="0;1"
+            />
+          </circle>
+          <path d="M3 16l4 -3l3 2l6 -5l5 4V19H3Z">
+            <animate
+              fill="freeze"
+              attributeName="fill-opacity"
+              begin="1.3s"
+              dur="0.15s"
+              values="0;0.3"
+            />
+          </path>
+        </g>
+      </svg>
+    </button>
     <!--! Add Button -->
     <button
       class="menu-button p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
@@ -193,6 +261,7 @@
           </span>
           <span>Пуш уведомление</span>
         </div>
+
         <div
           routerLink="/admin/users"
           routerLinkActive="bg-indigo-600 text-white"
@@ -217,6 +286,82 @@
           </span>
           <span>Users</span>
         </div>
+
+        <div
+          routerLink="/admin/images"
+          routerLinkActive="bg-indigo-600 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item mt-0 flex items-center space-x-2 text-indigo-600 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white"
+        >
+          <span
+            aria-hidden="true"
+            class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              >
+                <path
+                  stroke-dasharray="72"
+                  stroke-dashoffset="72"
+                  d="M3 14v-9h18v14h-18v-5"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    dur="0.6s"
+                    values="72;0"
+                  />
+                </path>
+                <path
+                  stroke-dasharray="24"
+                  stroke-dashoffset="24"
+                  stroke-width="1"
+                  d="M3 16l4 -3l3 2l6 -5l5 4"
+                >
+                  <animate
+                    fill="freeze"
+                    attributeName="stroke-dashoffset"
+                    begin="0.6s"
+                    dur="0.4s"
+                    values="24;0"
+                  />
+                </path>
+              </g>
+              <g fill="currentColor" fill-opacity="0">
+                <circle cx="7.5" cy="9.5" r="1.5">
+                  <animate
+                    fill="freeze"
+                    attributeName="fill-opacity"
+                    begin="1s"
+                    dur="0.2s"
+                    values="0;1"
+                  />
+                </circle>
+                <path d="M3 16l4 -3l3 2l6 -5l5 4V19H3Z">
+                  <animate
+                    fill="freeze"
+                    attributeName="fill-opacity"
+                    begin="1.3s"
+                    dur="0.15s"
+                    values="0;0.3"
+                  />
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span>Images</span>
+        </div>
+
         <div
           routerLink="/admin/add-button"
           routerLinkActive="bg-indigo-600 text-white"
